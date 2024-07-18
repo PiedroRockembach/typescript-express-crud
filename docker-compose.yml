@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql
+    container_name: store-database
+    environment:
+      MYSQL_ROOT_PASSWORD: 112233
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+networks:
+  store:
+    name: store-network
+  
