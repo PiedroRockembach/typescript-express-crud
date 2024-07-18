@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS STORE_DATABASE;
+CREATE DATABASE STORE_DATABASE;
+USE STORE_DATABASE;
+CREATE TABLE `customers` (
+    `cpf` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `name` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `active` BOOLEAN NOT NULL,
+    PRIMARY KEY (`cpf`)
+);
+CREATE TABLE products (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `name` VARCHAR(255) NOT NULL,
+    `price` FLOAT NOT NULL,
+    PRIMARY KEY (`id`)
+);
+CREATE TABLE purchases (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `product_id` INT NOT NULL,
+    `customer_id` INT NOT NULL,
+    `price` FLOAT NOT NULL,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`product_id`) REFERENCES products(`id`),
+    FOREIGN KEY (`customer_id`) REFERENCES customers(`id`),
+    PRIMARY KEY (`id`)
+);
